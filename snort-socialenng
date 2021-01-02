@@ -1,0 +1,68 @@
+SNORT
+Snort is a free and open source network intrusion prevention and detection system. It uses a rule-based language combining signature, protocol and anomaly inspection methods to detect any kind of malicious activity. Snort is also capable of performing real-time traffic analysis and packet logging on IP networks.
+Nano snort.config 
+Opens the snort configuration file
+This displays all the server and holds all the information regarding the same, SNORT looks at all the server all the requests coming on the servers all the files-parameters and responses,
+Also contains a list of rules about what do to in case of any intrusion or attack and incident like what should be done in case of ping attack etc. all the rules stored in the .rules file.
+The good thing we already have the predefined rules and we can also add our own rules to these files.eg sql.rules, web-php.rules, icmp.rules etc
+Al rule files contains the step need to be taken in case of any incident on any port that mentioned in the file, including the message and alert type. 
+Snort -T -c /etc/snort/snort.confg (path_of_the_directory_file) 
+ #-T for testing, -c specify configuration file it is 
+This checks the config file whether any change made or any rule added to config file is correct runs well without any problem  
+Snort -A console -c /etc/snort/snort.confg (path_to_snort.confg)
+Will start SNORT, now if anyone try to attack or scan us, send and request packet the SNORT will notify us and stop the same with all details about what was being tried to happen and it’s stopped, with the IP of attacker too. All the rules and prevention attack are stored and specified in the .rule file
+Writing our own rules
+We already have defined rules present in the rule files but if we wanna add new rules we can do by
+Alert icmp $EXTERNAL_NET any -> $HOME_NET any(msg:”message”; sid:384; rev:5;)
+This specify to alert whenever an icmp ping happens from any xternal network from any port to my home network at any port alert with the message which has the ID-sid and has revision-rev
+
+We add all our own rules in local.rules which is there for experimenting our own rules.
+Open it - nano local.rules
+Write the rule and come out after saving
+Check the config just in case of any error cause it would result in not starting snort
+Eg of own rules created:
+Alert tcp any any -> $HOME_NET 21(msg: ”FTP attempted”; sid:6001; rev:1;)
+# alert in case of any FTP attempt from any network at any port to our home network at port 21
+Alert tcp any any -> $HOME_NET 22(msg: ”SSH attempted”; sid:6002; rev:1;)
+# alert in case of any SSH attempt from any network at any port to our home network at port 22
+
+
+
+
+
+
+
+
+
+
+
+
+SOCIAL ENNG ATTACK
+Phishing 
+Setoolkit provide with various types of attacks method
+Choose social enng toolkit -> website attack vector -> credential harvester attack method -> chose any web template/site clone
+Web template -> provide ip of our system i.e. attacker’s system , the listener -> choose the template
+
+Send the html file to the victim by any way, when the victim opens it, the link divert it to listener with clone site being displayed
+
+Whenever the victim enters the credential the victim is resent to same page but the credential is sent to the attacker.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
